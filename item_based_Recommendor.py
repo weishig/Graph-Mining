@@ -1,5 +1,8 @@
 from numpy import *
 from functions import *
+from numpy import linalg as LA
+from tqdm import tqdm
+import numpy as np
 def sort_dict(dict):
     dict=sorted(dict.items(), key=lambda x:x[1],reverse=True)   
     return dict
@@ -32,7 +35,7 @@ def calculate_item_Similarity(item_user_matrix,user_id,item_id):
     col=len(item_user_matrix[0])
     sim_dict={}
     compare_index=[] # col that will be used to calculate similarity
-
+    sorted_sim_dictionary={}
     for j in range(1,col):
         if j!=user_id and item_user_matrix[item_id][j]!=-1:
             compare_index.append(j)
@@ -44,20 +47,26 @@ def calculate_item_Similarity(item_user_matrix,user_id,item_id):
         sum=0
         sqrt_1=0
         sqrt_2=0
+        v1=[]
+        v2=[]
         for j in compare_index:
-            if item_user_matrix[i][j]!=-1:
-                sum+=item_user_matrix[i][j]*item_user_matrix[item_id][j]
-                sqrt_1+=item_user_matrix[i][j]**2
-                sqrt_2+=item_user_matrix[item_id][j]**2
+            if item_user_matrix[i][j]!=-1 :
+                v1.append(item_user_matrix[i][j])
+                v2.append(item_user_matrix[item_id][j])
+                
+        sum=np.dot(v1,v2)
+        sqrt_1=LA.norm(v1)
+        sqrt_2=LA.norm(v2)
+        v1=np.array(v1)
+        v2=np.array(v2)
+        if len(v1)==0:
+            continue
         
-        if sqrt_1*sqrt_2!=0:
-            sim_score=sum/np.sqrt(sqrt_1*sqrt_2)
-            sim_dict[i]=sim_score
-        else:
-            sim_dict[i]=0
-
+        sim_score=sum/np.sqrt(sqrt_1*sqrt_2)
+        sim_dict[i]=sim_score
+        
     dict=sort_dict(sim_dict)
-    sorted_sim_dictionary={}
+    
 
     for each in dict:
         sorted_sim_dictionary[each[0]]=each[1]
@@ -88,7 +97,7 @@ def item_based_Model_Test(item_user_matrix,neighbor_size):
     row=len(item_user_matrix)
     col=len(item_user_matrix[0])
 
-    for i in range(row):
+    for i in tqdm(range(1,row)):
         for j in range(col):
             if item_user_matrix[i][j]!=-1:
                 truth.append(item_user_matrix[i][j])

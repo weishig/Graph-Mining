@@ -13,7 +13,7 @@ class movie:
     def printMovieInfor(self):
         print("movie id="+str(self.movie_id))
         print("movie title="+self.movie_title)
-        print("release data="+self.release_date)
+        print("release date="+self.release_date)
         print("video release date="+self.video_release_date)
         print("IMDB URL="+self.IMDB_URL)
         print("type="+self.Types)
