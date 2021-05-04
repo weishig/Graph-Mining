@@ -97,7 +97,7 @@ def item_based_Model_Test(item_user_matrix,neighbor_size):
     row=len(item_user_matrix)
     col=len(item_user_matrix[0])
    
-    for i in tqdm(range(944,row)):
+    for i in tqdm(range(1,row)):
         for j in range(col):
             if item_user_matrix[i][j]!=-1:
                 truth.append(item_user_matrix[i][j])
