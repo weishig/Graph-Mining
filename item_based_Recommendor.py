@@ -73,7 +73,7 @@ def calculate_item_Similarity(item_user_matrix,user_id,item_id):
 
     return sorted_sim_dictionary
 
-def item_based_CF(item_user_matrix,neighbor_size,user_id,item_id,item_avg_rating_dict):
+def item_based_CF(item_user_matrix,neighbor_size,item_id,user_id,item_avg_rating_dict):
     
     sorted_sim_dict=calculate_item_Similarity(item_user_matrix,user_id,item_id)
     top_k_neighbor_index=get_TopK_neighbor_index(sorted_sim_dict,neighbor_size)
@@ -96,8 +96,8 @@ def item_based_Model_Test(item_user_matrix,neighbor_size):
     prediction=[]
     row=len(item_user_matrix)
     col=len(item_user_matrix[0])
-
-    for i in tqdm(range(1,row)):
+   
+    for i in tqdm(range(944,row)):
         for j in range(col):
             if item_user_matrix[i][j]!=-1:
                 truth.append(item_user_matrix[i][j])
