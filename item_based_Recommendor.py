@@ -30,7 +30,7 @@ def get_TopK_neighbor_index(sorted_sim_dict,neighbor_size):
         top_k_neighbor_index.append(each)
     return top_k_neighbor_index
 
-def calculate_item_Similarity(item_user_matrix,item_id,user_id):
+def calculate_item_Similarity(item_user_matrix,user_id,item_id):
     row=len(item_user_matrix)
     col=len(item_user_matrix[0])
     sim_dict={}

@@ -37,16 +37,16 @@ def ConmmunityDetection(user_item_matrix,n_cluster):
     plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5);
     plt.show()
 
-user_item_matrix=np.full((943+1,1682+1),-1) #each row represents a user and each col represents a item, user_item_matrix[i][j]=user i's rating of item j
-file = open('ml-100k/u.data', 'r')
-Lines = file.readlines()
-for line in Lines:
-    splits=line.strip().split('\t')
-    user_id=int(splits[0])
-    item_id=int(splits[1])
-    rating=int(splits[2])
+#user_item_matrix=np.full((943+1,1682+1),-1) #each row represents a user and each col represents a item, user_item_matrix[i][j]=user i's rating of item j
+#file = open('ml-100k/u.data', 'r')
+#Lines = file.readlines()
+#for line in Lines:
+#    splits=line.strip().split('\t')
+#    user_id=int(splits[0])
+#    item_id=int(splits[1])
+#    rating=int(splits[2])
 
-    user_item_matrix[user_id][item_id]=rating
+#    user_item_matrix[user_id][item_id]=rating
 
 
-ConmmunityDetection(user_item_matrix,19)
+#ConmmunityDetection(user_item_matrix,19)

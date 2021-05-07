@@ -1,6 +1,6 @@
 import numpy
-
-def matrix_factorization(R, P, Q, K, steps=5000, alpha=0.0002, beta=0.02):
+from tqdm import tqdm
+def matrix_factorization(R, P, Q, K, steps=10, alpha=0.0002, beta=0.02):
     Q = Q.T
     for step in range(0,steps):
         for i in range(0,len(R)):
@@ -22,23 +22,3 @@ def matrix_factorization(R, P, Q, K, steps=5000, alpha=0.0002, beta=0.02):
             break
     return P, Q.T
 
-R = [
-     [5,3,0,1],
-     [4,0,0,1],
-     [1,1,0,5],
-     [1,0,0,4],
-     [0,1,5,4],
-    ]
-
-R = numpy.array(R)
-
-N = len(R)
-M = len(R[0])
-K = 2
-
-P = numpy.random.rand(N,K)
-Q = numpy.random.rand(M,K)
-
-nP, nQ = matrix_factorization(R, P, Q, K)
-nR = numpy.dot(nP, nQ.T)
-print(nR)
