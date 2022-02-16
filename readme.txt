@@ -27,3 +27,6 @@ Movielens 100 k (https://grouplens.org/datasets/movielens/)
 
 8.Test results
 test results are shown in main.ipynb
+
+Presentation: https://github.com/weishig/Graph-Mining/blob/main/Recommendation%20System%20Presentation.pdf
+Report: https://github.com/weishig/Graph-Mining/blob/main/Recommendation_System_Report.pdf
